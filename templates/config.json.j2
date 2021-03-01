@@ -1,0 +1,33 @@
+
+{
+  "tokens": {
+    "AccessToken" : "{{ lacework_accessToken }}"
+  }
+  {%- if lacework_autoUpgrade is defined %},
+  "AutoUpgrade" : "{{ lacework_autoUpgrade }}"
+  {%- endif %}
+  {%- if lacework_checkfreq is defined %},
+  "checkfreq" : "{{ lacework_checkfreq }}"
+  {%- endif %}
+  {%- if lacework_cpuLimit is defined %},
+  "cpulimit" : "{{ lacework_cpuLimit }}"
+  {%- endif %}
+  {%- if lacework_dbSize is defined %},
+  "DbSize" : "{{ lacework_dbSize }}"
+  {%- endif %}
+  {%- if lacework_interfaceConnectionSize is defined %},
+  "InterfaceConnectionSize" : "{{ lacework_interfaceConnectionSize }}"
+  {%- endif %}
+  {%- if lacework_memLimit is defined %},
+  "memlimit" : "{{ lacework_memLimit }}"
+  {%- endif %}
+  {%- if lacework_perfMode is defined %},
+  "perfmode" : "{{ lacework_perfMode }}"
+  {%- endif %}
+  {%- if lacework_proxyUrl is defined %},
+  "ProxyUrl" : "{{ lacework_proxyUrl }}"
+  {%- endif %}
+  {%- if lacework_tags is defined %},
+  "Tags": {{ lacework_tags |tojson }}
+  {%- endif %}
+}

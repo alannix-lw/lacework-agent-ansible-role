@@ -1,0 +1,43 @@
+---
+# tasks file for lacework-agent-ansible-role
+- name: configure the lacework repo
+  yum_repository:
+    name: packages-lacework-prod
+    description: packages-lacework-prod
+    baseurl: https://packages.lacework.net/RPMS/x86_64/
+    gpgkey: https://packages.lacework.net/keys/RPM-GPG-KEY-lacework
+    gpgcheck: yes
+    enabled: yes
+  when: ansible_pkg_mgr == 'yum'
+
+- name: add lacework repository into source list
+  apt_repository:
+    repo: "deb [arch=amd64] https://packages.lacework.net/DEB/{{ ansible_distribution | lower  }}/{{  ansible_distribution_version }} {{ ansible_distribution_release }} main"
+    filename: lacework
+    state: present
+    update_cache: yes
+  when: ansible_pkg_mgr == 'apt'
+
+- name: add apt signing key
+  apt_key:
+    keyserver: hkp://keyserver.ubuntu.com:80
+    id: "18E76630"
+    state: present
+  when: ansible_pkg_mgr == 'apt'
+
+- name: install lacework datacollector
+  package:
+    name: lacework
+    state: latest
+
+- name: wait until /var/lib/lacework/config/ is created
+  wait_for:
+    path: /var/lib/lacework/config/ 
+
+- name: generate config.json
+  template:
+    src: config.json.j2
+    dest: /var/lib/lacework/config/config.json
+    owner: root
+    group: root
+    mode: "0644"

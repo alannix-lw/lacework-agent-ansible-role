@@ -1,0 +1,6 @@
+galaxy_info:
+  author: Alan Nix
+  description: An Ansible Role to install the Lacework Agent
+  company: Lacework
+  license: MIT
+  min_ansible_version: 2.1
