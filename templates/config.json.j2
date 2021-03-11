@@ -3,6 +3,12 @@
   "tokens": {
     "AccessToken" : "{{ lacework_accessToken }}"
   }
+  {%- if lacework_cmdAllow is defined or lacework_cmdDisallow is defined %},
+  "cmdlinefilter" : {
+    "allow" : "{{ lacework_cmdAllow | default("*") }}",
+    "disallow" : "{{ lacework_cmdDisallow | default("") }}"
+  }
+  {%- endif %}
   {%- if lacework_autoUpgrade is defined %},
   "AutoUpgrade" : "{{ lacework_autoUpgrade }}"
   {%- endif %}

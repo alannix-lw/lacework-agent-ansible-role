@@ -12,6 +12,8 @@ lacework_accessToken
 
 lacework_autoUpgrade\
 lacework_checkfreq\
+lacework_cmdAllow\
+lacework_cmdDisallow\
 lacework_cpuLimit\
 lacework_dbSize\
 lacework_interfaceConnectionSize\
