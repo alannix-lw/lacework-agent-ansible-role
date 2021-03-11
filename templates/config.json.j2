@@ -9,6 +9,17 @@
     "disallow" : "{{ lacework_cmdDisallow | default("") }}"
   }
   {%- endif %}
+  {%- if lacework_fimFilePath is defined or lacework_fimFileIgnore is defined %},
+  "fim" : {
+    {%- if lacework_fimFilePath is defined %}
+    "filepath" : {{ lacework_fimFilePath | tojson }}
+    {%- endif %}
+    {%- if lacework_fimFilePath is defined and lacework_fimFileIgnore is defined %},{%- endif %}
+    {%- if lacework_fimFileIgnore is defined %}
+    "fileignore" : {{ lacework_fimFileIgnore | tojson }}
+    {%- endif %}
+  }
+  {%- endif %}
   {%- if lacework_autoUpgrade is defined %},
   "AutoUpgrade" : "{{ lacework_autoUpgrade }}"
   {%- endif %}

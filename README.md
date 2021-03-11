@@ -16,6 +16,8 @@ lacework_cmdAllow\
 lacework_cmdDisallow\
 lacework_cpuLimit\
 lacework_dbSize\
+lacework_fimFilePath\ (List)
+lacework_fimFileIgnore\ (List)
 lacework_interfaceConnectionSize\
 lacework_memLimit\
 lacework_perfMode\
