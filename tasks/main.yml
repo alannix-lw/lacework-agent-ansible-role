@@ -17,6 +17,13 @@
     state: present
   when: ansible_pkg_mgr == 'apt' and ansible_architecture == 'x86_64'
 
+- name: add the lacework key (apt)
+  apt_key:
+    keyserver: hkp://keyserver.ubuntu.com:80
+    id: "EE0CC692"
+    state: present
+  when: ansible_pkg_mgr == 'apt' and ansible_architecture == 'x86_64'
+
 - name: add the lacework repo (apt)
   apt_repository:
     repo: "deb [arch=amd64] https://packages.lacework.net/DEB/{{ ansible_distribution | lower  }}/{{  ansible_distribution_version }} {{ ansible_distribution_release }} main"
