@@ -8,21 +8,21 @@
     gpgkey: https://packages.lacework.net/keys/RPM-GPG-KEY-lacework
     gpgcheck: yes
     enabled: yes
-  when: ansible_pkg_mgr == 'yum' and ansible_architecture == 'x86_64'
+  when: ansible_pkg_mgr == 'yum'
 
 - name: add the lacework key (apt)
   apt_key:
     keyserver: hkp://keyserver.ubuntu.com:80
     id: "18E76630"
     state: present
-  when: ansible_pkg_mgr == 'apt' and ansible_architecture == 'x86_64'
+  when: ansible_pkg_mgr == 'apt'
 
 - name: add the lacework key (apt)
   apt_key:
     keyserver: hkp://keyserver.ubuntu.com:80
     id: "EE0CC692"
     state: present
-  when: ansible_pkg_mgr == 'apt' and ansible_architecture == 'x86_64'
+  when: ansible_pkg_mgr == 'apt'
 
 - name: add the lacework repo (apt)
   apt_repository:
@@ -30,29 +30,12 @@
     filename: lacework
     state: present
     update_cache: yes
-  when: ansible_pkg_mgr == 'apt' and ansible_architecture == 'x86_64'
+  when: ansible_pkg_mgr == 'apt'
 
 - name: install the lacework datacollector (apt/yum)
   package:
     name: lacework
     state: latest
-  when: ansible_architecture == 'x86_64'
-
-- name: gather the package information
-  package_facts:
-    manager: auto
-  when: ansible_architecture == 'aarch64'
-
-- name: download lacework install.sh if 'lacework' not installed
-  get_url:
-    url: https://packages.lacework.net/install.sh
-    dest: /tmp/lacework_install.sh
-    mode: '0500'
-  when: ansible_architecture == 'aarch64' and 'lacework' not in ansible_facts.packages
-
-- name: install lacework datacollector (install.sh)
-  command: sh /tmp/lacework_install.sh {{ lacework_accessToken }}
-  when: ansible_architecture == 'aarch64' and 'lacework' not in ansible_facts.packages
 
 - name: wait until /var/lib/lacework/config/ is created
   wait_for:
