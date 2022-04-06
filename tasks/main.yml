@@ -12,14 +12,7 @@
 
 - name: add the lacework key (apt)
   apt_key:
-    keyserver: hkp://keyserver.ubuntu.com:80
-    id: "18E76630"
-    state: present
-  when: ansible_pkg_mgr == 'apt'
-
-- name: add the lacework key (apt)
-  apt_key:
-    keyserver: hkp://keyserver.ubuntu.com:80
+    keyserver: hkp://keyserver.ubuntu.com
     id: "EE0CC692"
     state: present
   when: ansible_pkg_mgr == 'apt'
