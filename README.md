@@ -6,28 +6,28 @@ Install the Lacework agent on systems using the yum or apt package manager.
 
 **_Required_**
 
-lacework_accessToken
+- lacework_accessToken
 
 **_Optional_**
 
-lacework_autoUpgrade\
-lacework_checkfreq\
-lacework_cmdAllow\
-lacework_cmdDisallow\
-lacework_cpuLimit\
-lacework_dbSize\
-lacework_fimFilePath\ (List)
-lacework_fimFileIgnore\ (List)
-lacework_interfaceConnectionSize\
-lacework_memLimit\
-lacework_perfMode\
-lacework_proxyUrl
-
-lacework_release [latest (default), established, archived]
-
-lacework_tags (Dictionary)
-
-Note: All lacework_tags values should be quoted. Booleans will not work unless they are quoted.
+- lacework_autoUpgrade
+- lacework_checkfreq
+- lacework_cmdAllow
+- lacework_cmdDisallow
+- lacework_cpuLimit
+- lacework_dbSize
+- lacework_fimFilePath (List)
+- lacework_fimFileIgnore (List)
+- lacework_interfaceConnectionSize
+- lacework_memLimit
+- lacework_perfMode
+- lacework_proxyUrl
+- lacework_release
+  - latest (Default)
+  - established
+  - archived
+- lacework_tags (Dictionary)
+  - Note: All lacework_tags values should be quoted. Booleans will not work unless they are quoted.
 
 ## Dependencies
 
