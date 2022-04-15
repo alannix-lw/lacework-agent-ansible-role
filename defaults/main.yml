@@ -1,2 +1,5 @@
 ---
 # defaults file for lacework-agent-ansible-role
+
+# default release for the agent [latest, established, archived]
+lacework_release: latest

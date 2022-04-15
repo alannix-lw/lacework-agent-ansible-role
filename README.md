@@ -23,6 +23,8 @@ lacework_memLimit\
 lacework_perfMode\
 lacework_proxyUrl
 
+lacework_release [latest (default), established, archived]
+
 lacework_tags (Dictionary)
 
 Note: All lacework_tags values should be quoted. Booleans will not work unless they are quoted.
