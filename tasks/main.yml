@@ -4,8 +4,8 @@
   yum_repository:
     name: packages-lacework-prod
     description: packages-lacework-prod
-    baseurl: https://packages.lacework.net/RPMS/x86_64/
-    gpgkey: https://packages.lacework.net/keys/RPM-GPG-KEY-lacework
+    baseurl: https://packages.lacework.net/{{ lacework_release }}/RPMS/x86_64/
+    gpgkey: https://packages.lacework.net/{{ lacework_release }}/keys/RPM-GPG-KEY-lacework
     gpgcheck: yes
     enabled: yes
   when: ansible_pkg_mgr == 'yum'
@@ -19,7 +19,7 @@
 
 - name: add the lacework repo (apt)
   apt_repository:
-    repo: "deb [arch=amd64] https://packages.lacework.net/DEB/{{ ansible_distribution | lower  }}/{{  ansible_distribution_version }} {{ ansible_distribution_release }} main"
+    repo: "deb [arch=amd64] https://packages.lacework.net/{{ lacework_release }}/DEB/{{ ansible_distribution | lower  }}/{{  ansible_distribution_version }} {{ ansible_distribution_release }} main"
     filename: lacework
     state: present
     update_cache: yes
