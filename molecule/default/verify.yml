@@ -1,0 +1,16 @@
+---
+# This is an example playbook to execute Ansible tests.
+
+- name: Verify
+  hosts: all
+  gather_facts: false
+  tasks:
+  - name: Gather package facts
+    package_facts:
+      manager: auto
+
+  - name: Verify Packages
+    assert:
+      that: "'{{ item }}' in ansible_facts.packages"
+    with_items:
+      - lacework

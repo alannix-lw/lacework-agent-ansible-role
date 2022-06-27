@@ -3,4 +3,6 @@ galaxy_info:
   description: An Ansible Role to install the Lacework Agent
   company: Lacework
   license: MIT
-  min_ansible_version: 2.5
+  min_ansible_version: "2.5"
+  namespace: alannix_lw
+  role_name: lacework_agent_ansible_role

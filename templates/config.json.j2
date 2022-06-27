@@ -12,11 +12,11 @@
   {%- if lacework_fimFilePath is defined or lacework_fimFileIgnore is defined %},
   "fim" : {
     {%- if lacework_fimFilePath is defined %}
-    "filepath" : {{ lacework_fimFilePath | tojson }}
+    "filepath" : {{ lacework_fimFilePath | to_json }}
     {%- endif %}
     {%- if lacework_fimFilePath is defined and lacework_fimFileIgnore is defined %},{%- endif %}
     {%- if lacework_fimFileIgnore is defined %}
-    "fileignore" : {{ lacework_fimFileIgnore | tojson }}
+    "fileignore" : {{ lacework_fimFileIgnore | to_json }}
     {%- endif %}
   }
   {%- endif %}
@@ -45,6 +45,6 @@
   "ProxyUrl" : "{{ lacework_proxyUrl }}"
   {%- endif %}
   {%- if lacework_tags is defined %},
-  "Tags": {{ lacework_tags |tojson }}
+  "Tags": {{ lacework_tags | to_json }}
   {%- endif %}
 }
