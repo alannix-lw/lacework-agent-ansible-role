@@ -1,14 +1,18 @@
 ---
+- name: Print the detected package manager
+  ansible.builtin.debug:
+    msg: "{{ ansible_pkg_mgr }}"
+
 # tasks file for lacework-agent-ansible-role
-- name: add the lacework repo (yum)
+- name: add the lacework repo (yum/dnf)
   yum_repository:
     name: packages-lacework-prod
     description: packages-lacework-prod
-    baseurl: https://packages.lacework.net/{{ lacework_release }}/RPMS/x86_64/
+    baseurl: https://packages.lacework.net/{{ lacework_release }}/RPMS/{{ ansible_architecture }}/
     gpgkey: https://packages.lacework.net/{{ lacework_release }}/keys/RPM-GPG-KEY-lacework
     gpgcheck: yes
     enabled: yes
-  when: ansible_pkg_mgr == 'yum'
+  when: ansible_pkg_mgr == 'yum' or ansible_pkg_mgr == 'dnf'
 
 - name: add the lacework key (apt)
   apt_key:
