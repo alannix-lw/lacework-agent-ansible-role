@@ -1,0 +1,14 @@
+---
+- name: Converge
+  hosts: all
+  become: yes
+  tasks:
+    - name: "Include lacework-agent-ansible-role"
+      include_role:
+        name: "lacework-agent-ansible-role"
+      vars:
+        lacework_accessToken: 1234567890abcdef
+        lacework_tags:
+          application: molecule-tests
+      tags:
+        - molecule-idempotence-notest
