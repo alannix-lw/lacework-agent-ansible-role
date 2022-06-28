@@ -44,6 +44,9 @@
   {%- if lacework_proxyUrl is defined %},
   "ProxyUrl" : "{{ lacework_proxyUrl }}"
   {%- endif %}
+  {%- if lacework_serverUrl is defined %},
+  "serverurl" : "{{ lacework_serverUrl }}"
+  {%- endif %}
   {%- if lacework_tags is defined %},
   "Tags": {{ lacework_tags | to_json }}
   {%- endif %}

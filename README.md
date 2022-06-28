@@ -2,51 +2,43 @@
 
 Install the Lacework agent on systems using the yum or apt package manager.
 
+![Molecule Tests](https://github.com/alannix-lw/lacework-agent-ansible-role/actions/workflows/molecule-tests.yml/badge.svg)
+
 ## Role Variables
 
-**_Required_**
-
-- lacework_accessToken
-
-**_Optional_**
-
-- lacework_autoUpgrade
-- lacework_checkfreq
-- lacework_cmdAllow
-- lacework_cmdDisallow
-- lacework_cpuLimit
-- lacework_dbSize
-- lacework_fimFilePath (List)
-- lacework_fimFileIgnore (List)
-- lacework_interfaceConnectionSize
-- lacework_memLimit
-- lacework_perfMode
-- lacework_proxyUrl
-- lacework_release
-  - latest (Default)
-  - established
-  - archived
-- lacework_tags (Dictionary)
-  - Note: All lacework_tags values should be quoted. Booleans will not work unless they are quoted.
-
-## Dependencies
-
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+| Variable                         | Required | Description                                                                                                                              |
+| -------------------------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| lacework_accessToken             | Yes      | The access token to be used by the Lacework agent                                                                                        |
+| lacework_autoUpgrade             | No       | A boolean representing whether the agent should automatically upgrade                                                                    |
+| lacework_checkfreq               | No       | The frequency at which the agent should check for updates (in minutes)                                                                   |
+| lacework_cmdAllow                | No       | A comma-separated string, with `*` wildcards, of executable paths to include from command line argument collection                       |
+| lacework_cmdDisallow             | No       | A comma-separated string, with `*` wildcards, of executable paths to exclude from command line argument collection                       |
+| lacework_cpuLimit                | No       | The maximum number of CPU units that the Lacework agent should use                                                                       |
+| lacework_dbSize                  | No       | The size of the local Lacework agent cache database                                                                                      |
+| lacework_fimFilePath             | No       | Lacework includes monitoring a set of default paths. To override the default, supply a comma-separated string of paths                   |
+| lacework_fimFileIgnore           | No       | Lacework excludes monitoring a set of default paths. To override the default, supply a comma-separated string of paths                   |
+| lacework_interfaceConnectionSize | No       | The size of the network connection buffer, per interface, to create. **Only modify this parameter at the direction of Lacework Support** |
+| lacework_memLimit                | No       | The maximum amount of memory that the Lacework agent should use.                                                                         |
+| lacework_perfMode                | No       | The Lacework agent supports a "lite" mode, which reduces CPU consumption. To enable, set this value to `lite`                            |
+| lacework_proxyUrl                | No       | The Lacework agent can use a network proxy by adding proxy information in the following format: `http(s)://[proxy_server]:[proxy_port]`  |
+| lacework_release                 | No       | The release branch to install. Default is `latest` but options are as follows: `latest`, `established`, or `archived`                    |
+| lacework_serverUrl               | No       | The serverurl property specifies the endpoint to which the LAcework agent should communicate. ex: `https://api.fra.lacework.net`         |
+| lacework_tags                    | No       | A set of key/value pairs to use as tag data for the Lacework agent. **Note: All boolean tag values should be quoted.**                   |
 
 ## Example Playbook
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    ---
-    - hosts: lacework_servers
-      become: yes
-      roles:
-        - alannix_lw.lacework_agent_ansible_role
-      vars:
-        - lacework_accessToken: "your token"
-        - lacework_tags:
-            foo: bar
-            test: "true"
+```
+---
+- hosts: lacework_servers
+  become: yes
+  roles:
+    - alannix_lw.lacework_agent_ansible_role
+  vars:
+    - lacework_accessToken: "your token"
+    - lacework_tags:
+        foo: bar
+        test: "true"
+```
 
 ## License
 
