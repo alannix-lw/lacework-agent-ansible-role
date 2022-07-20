@@ -27,6 +27,12 @@ Install the Lacework agent on systems using the yum or apt package manager.
 
 ## Example Playbook
 
+This role is also hosted on [Ansible Galaxy](https://galaxy.ansible.com/alannix_lw/lacework_agent_ansible_role) and can be installed using the following command:
+
+> `ansible-galaxy install alannix_lw.lacework_agent_ansible_role`
+
+Once the role is installed, it can be used with a simple playbook like the following:
+
 ```
 ---
 - hosts: lacework_servers
