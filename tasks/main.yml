@@ -34,10 +34,6 @@
     name: lacework
     state: latest
 
-- name: wait until /var/lib/lacework/config/ is created
-  wait_for:
-    path: /var/lib/lacework/config/
-
 - name: generate config.json
   template:
     src: config.json.j2
