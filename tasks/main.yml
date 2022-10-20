@@ -33,7 +33,7 @@
 - name: install the lacework datacollector (apt/yum)
   package:
     name: lacework
-    state: latest
+    state: present
 
 - name: generate config.json
   template:
