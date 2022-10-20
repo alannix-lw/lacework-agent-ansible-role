@@ -44,5 +44,5 @@
     dest: /var/lib/lacework/config/config.json
     owner: root
     group: root
-    mode: "0644"
+    mode: 0640
   notify: restart lacework
