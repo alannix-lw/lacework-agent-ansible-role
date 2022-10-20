@@ -1,4 +1,6 @@
 ---
 # handlers file for lacework-agent-ansible-role
 - name: restart lacework
-  service: name=datacollector state=restarted
+  ansible.builtin.service:
+    name: datacollector
+    state: restarted

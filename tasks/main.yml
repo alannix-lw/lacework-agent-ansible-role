@@ -6,7 +6,7 @@
 
 # tasks file for lacework-agent-ansible-role
 - name: add the lacework repo (yum/dnf)
-  yum_repository:
+  ansible.builtin.yum_repository:
     name: packages-lacework-prod
     description: packages-lacework-prod
     baseurl: https://packages.lacework.net/{{ lacework_release }}/RPMS/{{ ansible_architecture }}/
@@ -16,14 +16,14 @@
   when: ansible_pkg_mgr == 'yum' or ansible_pkg_mgr == 'dnf'
 
 - name: add the lacework key (apt)
-  apt_key:
+  ansible.builtin.apt_key:
     keyserver: hkp://keyserver.ubuntu.com
     id: "EE0CC692"
     state: present
   when: ansible_pkg_mgr == 'apt'
 
 - name: add the lacework repo (apt)
-  apt_repository:
+  ansible.builtin.apt_repository:
     repo: "deb [arch=amd64,arm64] https://packages.lacework.net/{{ lacework_release }}/DEB/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} main"
     filename: lacework
     state: present
@@ -31,12 +31,12 @@
   when: ansible_pkg_mgr == 'apt'
 
 - name: install the lacework datacollector (apt/yum)
-  package:
+  ansible.builtin.package:
     name: lacework
     state: present
 
 - name: generate config.json
-  template:
+  ansible.builtin.template:
     src: config.json.j2
     dest: /var/lib/lacework/config/config.json
     owner: root
