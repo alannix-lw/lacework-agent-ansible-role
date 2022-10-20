@@ -23,6 +23,7 @@ Install the Lacework agent on systems using the yum or apt package manager.
 | lacework_proxyUrl                | No       | The Lacework agent can use a network proxy by adding proxy information in the following format: `http(s)://[proxy_server]:[proxy_port]`  |
 | lacework_release                 | No       | The release branch to install. Default is `latest` but options are as follows: `latest`, `established`, or `archived`                    |
 | lacework_serverUrl               | No       | The serverurl property specifies the endpoint to which the LAcework agent should communicate. ex: `https://api.fra.lacework.net`         |
+| lacework_state                   | No       | If the lacework agent will be installed or removed. Default is `present`. Options are `present` or `absent`                              |
 | lacework_tags                    | No       | A set of key/value pairs to use as tag data for the Lacework agent. **Note: All boolean tag values should be quoted.**                   |
 
 ## Example Playbook

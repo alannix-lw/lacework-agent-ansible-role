@@ -4,3 +4,8 @@
   ansible.builtin.service:
     name: datacollector
     state: restarted
+
+- name: yum-clean-metadata
+  ansible.builtin.command: yum clean metadata
+  args:
+    warn: no

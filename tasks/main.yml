@@ -1,45 +1,12 @@
 ---
+# tasks file for lacework-agent-ansible-role
 - name: Print the detected package manager
   ansible.builtin.debug:
     msg: "{{ ansible_pkg_mgr }}"
     verbosity: 3
 
-# tasks file for lacework-agent-ansible-role
-- name: add the lacework repo (yum/dnf)
-  ansible.builtin.yum_repository:
-    name: packages-lacework-prod
-    description: packages-lacework-prod
-    baseurl: https://packages.lacework.net/{{ lacework_release }}/RPMS/{{ ansible_architecture }}/
-    gpgkey: https://packages.lacework.net/{{ lacework_release }}/keys/RPM-GPG-KEY-lacework
-    gpgcheck: yes
-    enabled: yes
-  when: ansible_pkg_mgr == 'yum' or ansible_pkg_mgr == 'dnf'
+- include: install.yml
+  when: lacework_state == "present"
 
-- name: add the lacework key (apt)
-  ansible.builtin.apt_key:
-    keyserver: hkp://keyserver.ubuntu.com
-    id: "EE0CC692"
-    state: present
-  when: ansible_pkg_mgr == 'apt'
-
-- name: add the lacework repo (apt)
-  ansible.builtin.apt_repository:
-    repo: "deb [arch=amd64,arm64] https://packages.lacework.net/{{ lacework_release }}/DEB/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} main"
-    filename: lacework
-    state: present
-    update_cache: yes
-  when: ansible_pkg_mgr == 'apt'
-
-- name: install the lacework datacollector (apt/yum)
-  ansible.builtin.package:
-    name: lacework
-    state: present
-
-- name: generate config.json
-  ansible.builtin.template:
-    src: config.json.j2
-    dest: /var/lib/lacework/config/config.json
-    owner: root
-    group: root
-    mode: 0640
-  notify: restart lacework
+- include: uninstall.yml
+  when: lacework_state == "absent"
