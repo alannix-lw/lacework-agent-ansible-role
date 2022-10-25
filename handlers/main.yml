@@ -1,4 +1,11 @@
 ---
 # handlers file for lacework-agent-ansible-role
 - name: restart lacework
-  service: name=datacollector state=restarted
+  ansible.builtin.service:
+    name: datacollector
+    state: restarted
+
+- name: yum-clean-metadata
+  ansible.builtin.command: yum clean metadata
+  args:
+    warn: no

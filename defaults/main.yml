@@ -3,3 +3,5 @@
 
 # default release for the agent [latest, established, archived]
 lacework_release: latest
+lacework_state: present
+lacework_apt_key_id: "EE0CC692"
