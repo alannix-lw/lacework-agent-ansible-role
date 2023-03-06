@@ -8,6 +8,7 @@ platforms:
     image_owner: "309956199498"
     image_name: RHEL-8*HVM*-x86_64-*
     instance_type: t3.micro
+    region: ${AWS_REGION}
     vpc_subnet_id: ${AWS_SUBNET_ID}
     tags:
       Name: molecule_rhel_instance_amd64
@@ -15,6 +16,7 @@ platforms:
     image_owner: "309956199498"
     image_name: RHEL-8*HVM*-arm64-*
     instance_type: t4g.micro
+    region: ${AWS_REGION}
     vpc_subnet_id: ${AWS_SUBNET_ID}
     tags:
       Name: molecule_rhel_instance_arm64
@@ -22,6 +24,7 @@ platforms:
     image_owner: "099720109477"
     image_name: ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*
     instance_type: t3.micro
+    region: ${AWS_REGION}
     vpc_subnet_id: ${AWS_SUBNET_ID}
     tags:
       Name: molecule_ubuntu_instance_amd64
@@ -29,6 +32,7 @@ platforms:
     image_owner: "099720109477"
     image_name: ubuntu/images/hvm-ssd/ubuntu-focal-20.04-arm64-server-*
     instance_type: t4g.micro
+    region: ${AWS_REGION}
     vpc_subnet_id: ${AWS_SUBNET_ID}
     tags:
       Name: molecule_ubuntu_instance_arm64
