@@ -5,8 +5,8 @@
     msg: "{{ ansible_pkg_mgr }}"
     verbosity: 3
 
-- include: install.yml
+- include_tasks: install.yml
   when: lacework_state == "present"
 
-- include: uninstall.yml
+- include_tasks: uninstall.yml
   when: lacework_state == "absent"

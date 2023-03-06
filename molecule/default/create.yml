@@ -260,7 +260,7 @@
 
         - name: Wait for IP assignment to finish
           pause:
-            seconds: 20
+            seconds: 60
 
         - name: Collect instance configs
           set_fact:
